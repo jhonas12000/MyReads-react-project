@@ -11,7 +11,7 @@ class Home extends Component {
               <h1>MyReads</h1>
             </div>
             <div className="list-books-content">
-              <BooksShelf books={this.props.bookList}/>      
+              <BooksShelf books={this.props.bookList} moveBook={this.props.moveBook}/>      
             </div>
               <OpenSearch />
           </div>
