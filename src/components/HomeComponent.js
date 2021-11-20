@@ -3,6 +3,9 @@ import BooksShelf from './BooksShelfComponent';
 import OpenSearch from './OpenSearch';
 
 class Home extends Component {
+    componentDidMount(){
+      this.props.syncApiWithState()
+    }
     render() {
       console.log(this.props.bookList)
         return (

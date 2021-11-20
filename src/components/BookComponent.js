@@ -11,7 +11,7 @@ const getSelected = () => {
 }
 
 const value = getSelected()
-const thumbnail = book.imageLinks && book.imageLinks.thumbnail || '';
+const thumbnail = book.imageLinks ? book.imageLinks.thumbnail : '';
     return (
         <div className="book">
             <div className="book-top">

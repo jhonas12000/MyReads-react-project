@@ -19,12 +19,14 @@ class BooksApp extends React.Component {
   }
   
   componentDidMount() {
-     BooksAPI.getAll().then((books) => {
-      this.setState({books})
-      console.log(this.state.books)
-    })
+     this.syncApiWithState();
   }
 
+  syncApiWithState = () => {
+    BooksAPI.getAll().then((books) => {
+      this.setState({books});
+    })
+  }
   moveBook = (book, shelf) => {
 
     BooksAPI.update(book, shelf).then((data) => {
@@ -59,7 +61,7 @@ class BooksApp extends React.Component {
             
               <Route 
                 path={'/'} 
-                element={ <Home bookList={this.state.books} moveBook={this.moveBook} />} 
+                element={ <Home bookList={this.state.books} moveBook={this.moveBook} syncApiWithState={this.syncApiWithState}/>} 
                 
               />
                 
