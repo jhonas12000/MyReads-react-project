@@ -7,7 +7,7 @@ class Home extends Component {
       this.props.syncApiWithState()
     }
     render() {
-      console.log(this.props.bookList)
+      //console.log(this.props.bookList)
         return (
             <div className="list-books">
             <div className="list-books-title">
