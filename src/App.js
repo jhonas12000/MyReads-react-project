@@ -37,7 +37,8 @@ class BooksApp extends React.Component {
         const newBooks = books.map((current) => {
           if(current.id === book.id){
             return {
-              ...current, shelf
+              ...current, 
+              shelf
             }
           }else{
             return current;
@@ -62,14 +63,10 @@ class BooksApp extends React.Component {
               <Route 
                 path={'/'} 
                 element={ <Home bookList={this.state.books} moveBook={this.moveBook} syncApiWithState={this.syncApiWithState}/>} 
-                
               />
+    
+              <Route path={'/search'}element={ <Search bookList={this.state.books} books={this.state.books} moveBook={this.moveBook} book={this.state.book}/>} />
                 
-              
-              <Route path={'/search'}element={ <Search books={this.state.books} moveBook={this.moveBook}/>} />
-                
-              
-              
           </Routes>
           
         </Router>

@@ -3,7 +3,7 @@ import BooksList from './BooksListComponent';
 
 class BooksShelf extends Component {
     render() {
-        console.log(this.props.books)
+        
         const {books, moveBook} = this.props
         const currentBooks = books.filter(book => book.shelf === 'currentlyReading')
         const wantBooks = books.filter(book => book.shelf === 'wantToRead')

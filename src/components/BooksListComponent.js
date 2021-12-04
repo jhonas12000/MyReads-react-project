@@ -10,7 +10,7 @@ const BooksList = ({books, moveBook}) => {
             books.map(book => (
                 <li key={book.id} >
                     <Book 
-                        key={book.id}
+                        //key={book.id}
                         book={book}
                         moveBook={moveBook}
                         
