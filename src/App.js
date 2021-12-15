@@ -18,15 +18,21 @@ class BooksApp extends React.Component {
     
   }
   
-  componentDidMount() {
-     this.syncApiWithState();
+  // componentDidMount() {
+  //    this.syncApiWithState();
+  // }
+
+  // syncApiWithState = () => {
+  //   BooksAPI.getAll().then((books) => {
+  //     this.setState({books});
+  //   })
+  // }
+
+  async componentDidMount() {
+    const books = await BooksAPI.getAll(); 
+    this.setState({books});
   }
 
-  syncApiWithState = () => {
-    BooksAPI.getAll().then((books) => {
-      this.setState({books});
-    })
-  }
   moveBook = (book, shelf) => {
 
     BooksAPI.update(book, shelf).then((data) => {
@@ -34,16 +40,24 @@ class BooksApp extends React.Component {
       if(data){
 
         const {books} = this.state;
-        const newBooks = books.map((current) => {
-          if(current.id === book.id){
-            return {
-              ...current, 
-              shelf
+        const currentBook = books.find(current => current.id === book.id);
+        let newBooks = books;
+        if (currentBook) {
+          newBooks = books.map((current) => {
+            if(current.id === book.id){
+              return {
+                ...current, 
+                shelf
+              }
+            }else{
+              return current;
             }
-          }else{
-            return current;
-          }
-        })
+          });
+
+        } else {
+          newBooks.push({ ...book, shelf });
+        }
+
         this.setState({books: newBooks})
 
       }

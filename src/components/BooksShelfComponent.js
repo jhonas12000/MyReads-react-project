@@ -1,31 +1,36 @@
-import React, { Component } from 'react';
+import React from 'react';
 import BooksList from './BooksListComponent';
 
-class BooksShelf extends Component {
-    render() {
-        
-        const {books, moveBook} = this.props
-        const currentBooks = books.filter(book => book.shelf === 'currentlyReading')
-        const wantBooks = books.filter(book => book.shelf === 'wantToRead')
-        const readBooks = books.filter(book => book.shelf === 'read')
-        
-        return (
-            <div>
-                <div className="bookshelf">
-                  <h2 className="bookshelf-title">Currently Reading</h2>
-                    <BooksList books={currentBooks} moveBook={moveBook}/>    
-                </div>
-                <div className="bookshelf">
-                  <h2 className="bookshelf-title">Want to Read</h2>
-                  <BooksList books={wantBooks} moveBook={moveBook}/>
-                </div>
-                <div className="bookshelf">
-                  <h2 className="bookshelf-title">Read</h2>
-                  <BooksList books={readBooks} moveBook={moveBook}/>
-                </div>
-              </div>
-        );
-    }
-}
+const BooksShelf = (props) => {
 
-export default BooksShelf;
+      console.log(props.books)
+      const {books, moveBook} = props
+      
+        const SHELVES = [
+          {
+            title: 'Currently Reading',
+            id: 'currentlyReading'
+          },
+          {
+            title: 'Want To Read',
+            id: 'wantToRead'
+          },
+          {
+            title: 'Read',
+            id: 'read'
+          }
+        ];
+          
+        const renderShelves = SHELVES.map(shelve => <div key={shelve.id}>
+          <div className="bookshelf">
+                  <h2 className="bookshelf-title">{shelve.title}</h2>
+                    <BooksList books={books.filter(book => book.shelf === shelve.id)} moveBook={moveBook}/>    
+                </div>
+          </div>)
+        return (
+            <div className="bookshelf">
+                {renderShelves}
+            </div>
+        );
+}
+ export default BooksShelf;

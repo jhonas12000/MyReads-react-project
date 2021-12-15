@@ -2,7 +2,8 @@ import React from 'react';
 import Book from './BookComponent';
 
 
-const BooksList = ({books, moveBook}) => {  
+const BooksList = ({books, moveBook}) => { 
+    console.log('Props', books) 
     return (
         <div className="bookshelf-books">
         <ol className="books-grid"> 
@@ -10,10 +11,9 @@ const BooksList = ({books, moveBook}) => {
             books.map(book => (
                 <li key={book.id} >
                     <Book 
-                        //key={book.id}
                         book={book}
                         moveBook={moveBook}
-                        
+                        books={books}
                     />
                 </li>
             ))

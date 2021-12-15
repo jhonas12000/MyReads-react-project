@@ -3,6 +3,7 @@ import React from 'react';
 
 
 const Book = ({book, moveBook}) => {
+
 const getSelected = () => {
     if (book.shelf === 'currentlyReading' || book.shelf === 'wantToRead' || book.shelf === 'read') {
         return book.shelf

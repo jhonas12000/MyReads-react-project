@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-//import BooksList from './BooksListComponent';
 import Book from './BookComponent';
 import * as BooksAPI from '../BooksAPI'
 
@@ -36,9 +35,10 @@ class Search extends Component {
   
   
     render() {
-        console.log(this.props)
+        
         const { filteredBooks, query } = this.state;
-        const { books, moveBook } = this.props;
+        const { moveBook, books } = this.props;
+        console.log(this.props)
         return (
             <div className="search-books">
             <div className="search-books-bar">
@@ -60,14 +60,20 @@ class Search extends Component {
             </div>
             <div className="search-books-results">
               <ol className='books-grid'>
-                {filteredBooks.map(book => (
-                  <Book 
-                    book={book}
-                    books={books}
-                    key={book.id}
-                    moveBook={moveBook}
-                  />
-                ))}
+                {filteredBooks.map(filteredBook => {
+                  const currentBook = books.find(book => book.id === filteredBook.id);
+
+                  return (
+                    <li key={filteredBook.id}>
+                      <Book 
+                        book={currentBook ? currentBook : filteredBook}
+                        moveBook={moveBook}
+                      />
+                    </li>
+                    
+                  )})
+                }
+                
               </ol>
               
             </div>
